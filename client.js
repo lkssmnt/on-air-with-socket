@@ -1,5 +1,6 @@
-// CURSORS
+// ——————— CURSORS
 
+// setting up the server connection to the herokuapp
 const socket = io("https://on-air-socket-test.herokuapp.com/", {
   withCredentials: true,
   extraHeaders: {
@@ -7,35 +8,67 @@ const socket = io("https://on-air-socket-test.herokuapp.com/", {
   }
 });
 
+
+
+let cursorfps = 60;
+let lastMove = 0;
+
 document.addEventListener("mousemove", e => {
-  socket.emit("mouse move", {x: e.pageX, y: e.pageY});
+  // socket.emit("mouse move", {x: e.pageX, y: e.pageY});
+
+  if(Date.now() - lastMove > 1000 / cursorfps) {
+    let x = Math.round(myScale(e.clientX, 0, document.body.clientWidth, 0 , 100)*1000)/1000
+    let y = Math.round(myScale(e.clientY, 0, document.body.clientHeight, 0 , 100)*1000)/1000
+
+    socket.emit('mouse move', {x, y});
+    lastMove = Date.now();
+  }
 });
+
+
 
 socket.on("updateCursorPos", data => {
   const selector = `.pointer[session_id="${data.session_id}"]`;
   const cursorsContainer = document.querySelector(".cursors-container");
 
-  if(document.querySelector(selector)) {
+  if(!document.querySelector(selector)) {
     const cursor = document.createElement("img");
-    cursor.setAttribute("src", "/assets/cursor.png");
+    cursor.setAttribute("src", "assets/arrow.png");
     cursor.setAttribute("class", "pointer");
     cursor.setAttribute("session_id", data.session_id);
-    cursor.style.top = `${data.coords.y}px`;
-    cursor.style.left = `${data.coords.x}px`;
+
+    const xPos = myScale(data.coords.x, 0, 100, 0, document.body.clientWidth);
+    const yPos = myScale(data.coords.y, 0, 100, 0, document.body.clientHeight);
+
+    // cursor.style.left = `${xPos}px`;
+    // cursor.style.top = `${yPos}px`;
     cursorsContainer.appendChild(cursor);
   }
 
   const cursor = document.querySelector(selector);
   if(cursor) {
-    cursor.style.top = `${data.coords.y}px`;
-    cursor.style.left = `${data.coords.x}px`;
+    const xPos = myScale(data.coords.x, 0, 100, 0, document.body.clientWidth);
+    const yPos = myScale(data.coords.y, 0, 100, 0, document.body.clientHeight);
+    // cursor.style.left = `${xPos}px`;
+    // cursor.style.top = `${yPos}px`;
+
+    gsap.to(cursor, {duration: .2, x: xPos, y: yPos, ease: "power2.out"});
+
+    // cursor.style.top = `${data.coords.y}px`;
+    // cursor.style.left = `${data.coords.x}px`;
   }
 });
+
+function myScale(num, in_min, in_max, out_min, out_max) {
+  return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+}
 
 
 
 
 // VIDEOS
+
+/*
 
 // Load the IFrame Player API code asynchronously.
 var tag = document.createElement('script');
@@ -87,7 +120,6 @@ if(btns) {
     btn.addEventListener("click", (e) => {
       const frameSelector = e.target.getAttribute("data-video");
 
-
       const frame = document.getElementById(frameSelector);
       console.log(frame);
 
@@ -100,7 +132,8 @@ if(btns) {
 
       // set the selected frame active
       frame.classList.add("active");
-
     });
   });
 }
+
+*/
