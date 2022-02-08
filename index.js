@@ -31,7 +31,7 @@ io.on('connection', (socket) => {
   console.log(`a user with the id ${socket.id} connected. users online: ${userArr.length}`);
 
   socket.on('mouse move', (mousePos) => {
-    io.emit('updateCursorPos', {session_id: socket.id, coords: mousePos});
+    socket.broadcast.emit('updateCursorPos', {session_id: socket.id, coords: mousePos});
   })
 
   socket.on('disconnect', () => {
