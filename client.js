@@ -57,6 +57,13 @@ socket.on("updateCursorPos", data => {
   }
 });
 
+socket.on("dc", id => {
+  const cursor = document.querySelector(`.pointer[session_id="${id}"]`);
+  if(cursor) {
+    cursor.remove();
+  }
+});
+
 function myScale(num, in_min, in_max, out_min, out_max) {
   return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
