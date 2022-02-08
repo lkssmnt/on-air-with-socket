@@ -106,7 +106,7 @@ videos.forEach(video => {
     const iframe = document.createElement('div');
     iframe.setAttribute("id", `ytPlayer-${btnCounter}`);
     document.getElementsByClassName('video-wrapper')[0].appendChild(iframe);
-    
+
     btnCounter++;
 });
 
@@ -161,14 +161,18 @@ if(btns) {
       // set all frames inactive
       playerN = 0;
       frames.forEach(frame => {
-        frame.classList.remove("active");
-
-        players[playerN].pauseVideo();
+        setTimeout(function () {
+          frame.classList.remove("active");
+          players[playerN].pauseVideo();
+        }, 100);
+  
         playerN++;
       });
 
       // set the selected frame active
-      frame.classList.add("active");
+      setTimeout(function () {
+        frame.classList.add("active");
+      }, 100);
       players[btnN].playVideo();
     });
   });
