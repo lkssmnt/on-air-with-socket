@@ -3,6 +3,7 @@ const app = express();
 const http = require('http');
 // const server = http.createServer(app);
 const { Server } = require("socket.io");
+const port = process.env.PORT || 3000;
 
 const httpServer = http.createServer();
 const io = new Server(httpServer, {
@@ -19,14 +20,25 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 
+const userArr = [];
+
 io.on('connection', (socket) => {
-  console.log('a user connected');
+  userArr.push({
+    userID: socket.id,
+    xPos: 0,
+    yPos: 0,
+  });
+  console.log(`a user with the id ${socket.id} connected. users online: ${userArr.length}`);
+
+  socket.on('mouse move', (mousePos) => {
+    io.emit('updateCursorPos', {session_id: socket.id, coords: mousePos});
+  })
 
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });
 });
 
-httpServer.listen(process.env.PORT || 3000, () => {
-  console.log('listening on *:3000');
+httpServer.listen(port, () => {
+  console.log(`Socket.IO server running at http://localhost:${port}/`);
 });
