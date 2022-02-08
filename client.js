@@ -1,3 +1,4 @@
+/*
 // ——————— CURSORS
 
 // setting up the server connection to the herokuapp
@@ -61,12 +62,13 @@ function myScale(num, in_min, in_max, out_min, out_max) {
   return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
+*/
 
 
 
 // VIDEOS
 
-/*
+
 
 // Load the IFrame Player API code asynchronously.
 var tag = document.createElement('script');
@@ -77,7 +79,30 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 const videos = [
   "aTHmdLVcieI",
   "MNeX4EGtR5Y",
+  "joQ42CYhtZw",
+  "Wimkqo8gDZ0",
+  "90x3I-sR4Lk",
+  "nPQ4BpTfK1Q",
 ];
+
+//create buttons and iframe placeholders
+let btnCounter = 0;
+videos.forEach(video => {
+  // create buttons
+    const btn = document.createElement('div');
+    document.getElementsByClassName('btns-wrapper')[0].appendChild(btn);
+    btn.setAttribute("class", 'btn');
+    btn.setAttribute("data-video", `ytPlayer-${btnCounter}`);
+    btn.setAttribute("data-count", `${btnCounter}`);
+
+  //iframe placeholders
+    const iframe = document.createElement('div');
+    iframe.setAttribute("id", `ytPlayer-${btnCounter}`);
+    document.getElementsByClassName('video-wrapper')[0].appendChild(iframe);
+    
+    btnCounter++;
+});
+
 
 const players = [];
 
@@ -88,7 +113,7 @@ function onYouTubePlayerAPIReady() {
     const player = new YT.Player(`ytPlayer-${playerCounter}`, {
       height: '360',
       width: '640',
-      playerVars: { 'autoplay': 1, 'showinfo': 0, 'modestbranding': 1, 'loop': 1, 'playsinline': 1 },
+      playerVars: { 'autoplay': 1, 'showinfo': 0, 'modestbranding': 1, 'loop': 1, 'playsinline': 1, 'rel': 0, },
       videoId: video,
       events: {
         'onReady': onPlayerReady,
@@ -104,6 +129,7 @@ function onPlayerReady(event) {
   event.target.mute();
 }
 
+
 // set first frame active
 const firstFrame = document.querySelector('#ytPlayer-0');
 firstFrame.classList.add('active');
@@ -117,21 +143,26 @@ if(btns) {
 
     btn.addEventListener("click", (e) => {
       const frameSelector = e.target.getAttribute("data-video");
+      var btnN = Number(e.target.getAttribute("data-count"));
 
       const frame = document.getElementById(frameSelector);
       console.log(frame);
 
+
       const frames = document.querySelectorAll(".video-wrapper iframe");
 
       // set all frames inactive
+      playerN = 0;
       frames.forEach(frame => {
         frame.classList.remove("active");
+
+        players[playerN].pauseVideo();
+        playerN++;
       });
 
       // set the selected frame active
       frame.classList.add("active");
+      players[btnN].playVideo();
     });
   });
 }
-
-*/
