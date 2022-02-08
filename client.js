@@ -9,7 +9,7 @@ const socket = io("https://on-air-socket-test.herokuapp.com/", {
   }
 });
 
-let cursorfps = 20;
+let cursorfps = 30;
 let lastMove = 0;
 
 document.addEventListener("mousemove", e => {
@@ -55,6 +55,13 @@ socket.on("updateCursorPos", data => {
 
     // cursor.style.top = `${data.coords.y}px`;
     // cursor.style.left = `${data.coords.x}px`;
+  }
+});
+
+socket.on("dc", id => {
+  const cursor = document.querySelector(`.pointer[session_id="${id}"]`);
+  if(cursor) {
+    cursor.remove();
   }
 });
 
