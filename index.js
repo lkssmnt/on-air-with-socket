@@ -7,7 +7,7 @@ const { Server } = require("socket.io");
 const httpServer = http.createServer();
 const io = new Server(httpServer, {
   cors: {
-    origin: "https://lsiemoneit.de/",
+    origin: "https://lsiemoneit.de",
     allowedHeaders: ["my-custom-header"],
     credentials: true
   }
