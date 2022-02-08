@@ -8,7 +8,7 @@ const socket = io("https://on-air-socket-test.herokuapp.com/", {
   }
 });
 
-let cursorfps = 60;
+let cursorfps = 20;
 let lastMove = 0;
 
 document.addEventListener("mousemove", e => {
