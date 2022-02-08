@@ -4,7 +4,7 @@ const http = require('http');
 // const server = http.createServer(app);
 const { Server } = require("socket.io");
 
-const httpServer = createServer();
+const httpServer = http.createServer();
 const io = new Server(httpServer, {
   cors: {
     origin: "https://example.com",
