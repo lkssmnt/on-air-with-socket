@@ -132,45 +132,34 @@ function onPlayerReady(event) {
 // const firstFrame = document.querySelector('#ytPlayer-0');
 // firstFrame.classList.add('active');
 
+function switchVideo(videoN) {
+  const btn = document.querySelector(`[data-count="${videoN}"]`);
+  const frameSelector = btn.getAttribute("data-video");
+  const frame = document.getElementById(frameSelector);
+  const frames = document.querySelectorAll(".video-wrapper iframe");
+
+  // set all frames inactive
+  let playerN = 0;
+  frames.forEach(frame => {
+    frame.classList.remove("active");
+    players[playerN].pauseVideo();
+    playerN++;
+  });
+
+  // set the selected frame active
+  setTimeout(function () {
+    frame.classList.add("active");
+  }, 100);
+  players[videoN].playVideo();
+}
+
 
 const btns = document.querySelectorAll(".btn");
 
 if(btns) {
   btns.forEach(btn => {
     btn.addEventListener("click", (e) => {
-      const frameSelector = e.target.getAttribute("data-video");
-      var btnN = Number(e.target.getAttribute("data-count"));
-
-      const frame = document.getElementById(frameSelector);
-      const frames = document.querySelectorAll(".video-wrapper iframe");
-
-      // set all frames inactive
-      let playerN = 0;
-      frames.forEach(frame => {
-        frame.classList.remove("active");
-        players[playerN].pauseVideo();
-        playerN++;
-
-        // console.log(players);
-      });
-
-      // set the selected frame active
-      // setTimeout(function () {
-        frame.classList.add("active");
-      // }, 100);
-      players[btnN].playVideo();
-
-      console.log(btnN);
-      if (btnN < btns.length - 1) {
-        setTimeout(function() {
-          btns[btnN + 1].click();
-        },5000);
-      } else {
-        setTimeout(function() {
-          btns[0].click();
-        },5000);
-      }
-
+      switchVideo(e.target.getAttribute("data-count"));
     });
 
     btn.addEventListener("mouseenter", () =>{
@@ -185,7 +174,53 @@ if(btns) {
   });
 }
 
-<<<<<<< HEAD
+
+let videoActive = null;
+
+setInterval(() => {
+  if(videoActive === null) {
+    videoActive = 0;
+    switchVideo(videoActive);
+  } else if(videoActive === players.length - 1) {
+    videoActive = 0;
+    switchVideo(videoActive);
+  } else {
+    videoActive++;
+    switchVideo(videoActive);
+  }
+}, 30000);
+
+
+// const frameSelector = e.target.getAttribute("data-video");
+// var btnN = Number(e.target.getAttribute("data-count"));
+
+// const frame = document.getElementById(frameSelector);
+// const frames = document.querySelectorAll(".video-wrapper iframe");
+
+// // set all frames inactive
+// let playerN = 0;
+// frames.forEach(frame => {
+//   frame.classList.remove("active");
+//   players[playerN].pauseVideo();
+//   playerN++;
+// });
+
+// // set the selected frame active
+// setTimeout(function () {
+//   frame.classList.add("active");
+// }, 100);
+// players[btnN].playVideo();
+
+// // if (btnN < btns.length - 1) {
+// //   setTimeout(function() {
+// //     btns[btnN + 1].click();
+// //   },5000);
+// // } else {
+// //   setTimeout(function() {
+// //     btns[0].click();
+// //   },5000);
+// // }
+
 
 // CABLES GL
 
@@ -216,7 +251,3 @@ document.addEventListener('CABLES.jsLoaded', function (event) {
 });
 
 */
-=======
-//activate first frame
-btns[0].click();
->>>>>>> fe613347554e78af6cccb97d1e22060ba841867c
