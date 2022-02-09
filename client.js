@@ -159,6 +159,10 @@ const btns = document.querySelectorAll(".btn");
 if(btns) {
   btns.forEach(btn => {
     btn.addEventListener("click", (e) => {
+      if(autoplay) {
+        clearInterval(autoplayInterval);
+        autoplay = false;
+      }
       switchVideo(e.target.getAttribute("data-count"));
     });
 
@@ -176,8 +180,9 @@ if(btns) {
 
 
 let videoActive = null;
+let autoplay = true;
 
-setInterval(() => {
+let autoplayInterval = setInterval(() => {
   if(videoActive === null) {
     videoActive = 0;
     switchVideo(videoActive);
@@ -188,7 +193,7 @@ setInterval(() => {
     videoActive++;
     switchVideo(videoActive);
   }
-}, 30000);
+}, 5000);
 
 
 // const frameSelector = e.target.getAttribute("data-video");
