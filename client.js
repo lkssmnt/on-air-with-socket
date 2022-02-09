@@ -129,8 +129,8 @@ function onPlayerReady(event) {
 
 
 // set first frame active
-const firstFrame = document.querySelector('#ytPlayer-0');
-firstFrame.classList.add('active');
+// const firstFrame = document.querySelector('#ytPlayer-0');
+// firstFrame.classList.add('active');
 
 
 const btns = document.querySelectorAll(".btn");
@@ -150,15 +150,27 @@ if(btns) {
         frame.classList.remove("active");
         players[playerN].pauseVideo();
         playerN++;
-  
-        console.log(players);
+
+        // console.log(players);
       });
 
       // set the selected frame active
-      setTimeout(function () {
+      // setTimeout(function () {
         frame.classList.add("active");
-      }, 100);
+      // }, 100);
       players[btnN].playVideo();
+
+      console.log(btnN);
+      if (btnN < btns.length - 1) {
+        setTimeout(function() {
+          btns[btnN + 1].click();
+        },5000);
+      } else {
+        setTimeout(function() {
+          btns[0].click();
+        },5000);
+      }
+
     });
 
     btn.addEventListener("mouseenter", () =>{
@@ -172,3 +184,6 @@ if(btns) {
     });
   });
 }
+
+//activate first frame
+btns[0].click();
