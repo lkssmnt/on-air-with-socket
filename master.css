@@ -1,6 +1,11 @@
 @font-face {
   font-family: Jellee;
-  src: url(Jellee-Bold.woff);
+  src: url(assets/Jellee-Bold.woff);
+}
+
+@font-face {
+  font-family: Snell;
+  src: url(assets/SnellBT-Bold.woff);
 }
 
 * {
@@ -23,6 +28,28 @@ body {
 
 body {
   background: linear-gradient(318.32deg, #c3d1e4 0%, #dde7f3 55%, #d4e0ed 100%);
+}
+
+h1.preview-title {
+  opacity: 0;
+  filter: blur(20px);
+
+  transition: all 0.4s ease-in-out;
+
+  pointer-events: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: Snell;
+
+  line-height: 1;
+  mix-blend-mode: difference;
+}
+
+h1.preview-title.active {
+  opacity: 1;
+  filter: blur(0);
 }
 
 .cursors-container {
@@ -88,6 +115,7 @@ h2 {
 .btns-wrapper {
   flex: 1;
   width: 100%;
+  height: 5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -104,8 +132,8 @@ h2 {
 
 .btn {
   flex: 1;
-  width: 8rem;
-  height: 8rem;
+  height: 100%;
+  width: 5rem;
   position: relative;
   border-radius: 400px;
   padding: 2px;

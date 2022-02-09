@@ -137,28 +137,21 @@ const btns = document.querySelectorAll(".btn");
 
 if(btns) {
   btns.forEach(btn => {
-    console.log(btn);
-
     btn.addEventListener("click", (e) => {
       const frameSelector = e.target.getAttribute("data-video");
       var btnN = Number(e.target.getAttribute("data-count"));
 
       const frame = document.getElementById(frameSelector);
-      console.log(frame);
-
-
       const frames = document.querySelectorAll(".video-wrapper iframe");
 
       // set all frames inactive
       let playerN = 0;
       frames.forEach(frame => {
-        setTimeout(function () {
-          frame.classList.remove("active");
-          players[playerN].pauseVideo();
-        }, 100);
-  
+        frame.classList.remove("active");
+        players[playerN].pauseVideo();
         playerN++;
-        console.log(players[playerN]);
+  
+        console.log(players);
       });
 
       // set the selected frame active
@@ -166,6 +159,16 @@ if(btns) {
         frame.classList.add("active");
       }, 100);
       players[btnN].playVideo();
+    });
+
+    btn.addEventListener("mouseenter", () =>{
+      const previewTitle = document.querySelector(".preview-title");
+      previewTitle.classList.add("active");
+    });
+
+    btn.addEventListener("mouseleave", () =>{
+      const previewTitle = document.querySelector(".preview-title");
+      previewTitle.classList.remove("active");
     });
   });
 }
