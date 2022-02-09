@@ -68,6 +68,12 @@ function myScale(num, in_min, in_max, out_min, out_max) {
 
 // VIDEOS
 
+//autoplaytoggle setup
+
+var input = document.getElementById('toggleswitch');
+input.checked = true;
+var autoplay = true;
+
 // Load the IFrame Player API code asynchronously.
 var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/player_api";
@@ -147,9 +153,9 @@ function switchVideo(videoN) {
   });
 
   // set the selected frame active
-  setTimeout(function () {
+  // setTimeout(function () {
     frame.classList.add("active");
-  }, 100);
+  // }, 100);
   players[videoN].playVideo();
 }
 
@@ -164,6 +170,8 @@ if(btns) {
         autoplay = false;
       }
       switchVideo(e.target.getAttribute("data-count"));
+      input.checked = false;
+      autoplay = false;
     });
 
     btn.addEventListener("mouseenter", () =>{
@@ -186,15 +194,23 @@ let autoplayInterval = setInterval(() => {
   if(videoActive === null) {
     videoActive = 0;
     switchVideo(videoActive);
-  } else if(videoActive === players.length - 1) {
+  }else if(videoActive === players.length - 1 && autoplay) {
     videoActive = 0;
     switchVideo(videoActive);
-  } else {
+  } else if(autoplay){
     videoActive++;
     switchVideo(videoActive);
   }
 }, 5000);
 
+
+input.addEventListener('change',function(){
+    if(this.checked) {
+        autoplay = true;
+    } else {
+        autoplay = false;
+    }
+});
 
 // const frameSelector = e.target.getAttribute("data-video");
 // var btnN = Number(e.target.getAttribute("data-count"));
