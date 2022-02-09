@@ -1,4 +1,3 @@
-/*
 // ——————— CURSORS
 
 // setting up the server connection to the herokuapp
@@ -13,8 +12,6 @@ let cursorfps = 30;
 let lastMove = 0;
 
 document.addEventListener("mousemove", e => {
-  // socket.emit("mouse move", {x: e.pageX, y: e.pageY});
-
   if(Date.now() - lastMove > 1000 / cursorfps) {
     let x = Math.round(myScale(e.clientX, 0, document.body.clientWidth, 0 , 100)*1000)/1000
     let y = Math.round(myScale(e.clientY, 0, document.body.clientHeight, 0 , 100)*1000)/1000
@@ -24,15 +21,13 @@ document.addEventListener("mousemove", e => {
   }
 });
 
-
-
 socket.on("updateCursorPos", data => {
   const selector = `.pointer[session_id="${data.session_id}"]`;
   const cursorsContainer = document.querySelector(".cursors-container");
 
   if(!document.querySelector(selector)) {
     const cursor = document.createElement("img");
-    cursor.setAttribute("src", "assets/arrow.png");
+    cursor.setAttribute("src", "assets/arrow2.png");
     cursor.setAttribute("class", "pointer");
     cursor.setAttribute("session_id", data.session_id);
 
@@ -69,13 +64,9 @@ function myScale(num, in_min, in_max, out_min, out_max) {
   return (num - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 }
 
-*/
-
 
 
 // VIDEOS
-
-
 
 // Load the IFrame Player API code asynchronously.
 var tag = document.createElement('script');
@@ -159,7 +150,7 @@ if(btns) {
       const frames = document.querySelectorAll(".video-wrapper iframe");
 
       // set all frames inactive
-      playerN = 0;
+      let playerN = 0;
       frames.forEach(frame => {
         setTimeout(function () {
           frame.classList.remove("active");
@@ -167,6 +158,7 @@ if(btns) {
         }, 100);
   
         playerN++;
+        console.log(players[playerN]);
       });
 
       // set the selected frame active
