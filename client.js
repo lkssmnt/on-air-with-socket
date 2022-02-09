@@ -129,8 +129,8 @@ function onPlayerReady(event) {
 
 
 // set first frame active
-const firstFrame = document.querySelector('#ytPlayer-0');
-firstFrame.classList.add('active');
+// const firstFrame = document.querySelector('#ytPlayer-0');
+// firstFrame.classList.add('active');
 
 
 const btns = document.querySelectorAll(".btn");
@@ -172,3 +172,34 @@ if(btns) {
     });
   });
 }
+
+
+// CABLES GL
+
+/*
+
+// disable rubberband effect on mobile devices
+document.getElementById('glcanvas').addEventListener('touchmove', (e)=>{ e.preventDefault(); }, false);
+
+
+function patchInitialized(patch) {
+    // You can now access the patch object (patch), register variable watchers and so on
+}
+
+function patchFinishedLoading(patch) {
+    console.log("patchFinishedLoading");
+}
+
+document.addEventListener('CABLES.jsLoaded', function (event) {
+    CABLES.patch = new CABLES.Patch({
+        patchFile: 'js/copy_of_clouds.json',
+        prefixAssetPath: '',
+        "canvas": {"alpha":true,"premultipliedAlpha":true},
+        glCanvasId: 'glcanvas',
+        glCanvasResizeToWindow: true,
+        onPatchLoaded: patchInitialized,
+        onFinishedLoading: patchFinishedLoading,
+    });
+});
+
+*/
