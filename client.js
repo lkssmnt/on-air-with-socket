@@ -138,6 +138,8 @@ function onPlayerReady(event) {
 // const firstFrame = document.querySelector('#ytPlayer-0');
 // firstFrame.classList.add('active');
 
+let clicked = false;
+
 function switchVideo(videoN) {
   const btn = document.querySelector(`[data-count="${videoN}"]`);
   const frameSelector = btn.getAttribute("data-video");
@@ -157,6 +159,10 @@ function switchVideo(videoN) {
     frame.classList.add("active");
   // }, 100);
   players[videoN].playVideo();
+  btns.forEach(btn => {
+    btn.classList.remove("btn-hover");
+  });
+  btn.classList.add("btn-hover");
 }
 
 
@@ -173,17 +179,26 @@ if(btns) {
       }
       videoActive = e.target.getAttribute("data-count");
       switchVideo(videoActive);
+
+      btn.classList.add("btn-hover");
+      clicked = true;
       // autoplay = false;
     });
+
 
     btn.addEventListener("mouseenter", () =>{
       const previewTitle = document.querySelector(".preview-title");
       previewTitle.classList.add("active");
+      btn.classList.add("btn-hover");
     });
 
     btn.addEventListener("mouseleave", () =>{
       const previewTitle = document.querySelector(".preview-title");
       previewTitle.classList.remove("active");
+      if (!clicked) {
+        btn.classList.remove("btn-hover");
+      }
+      clicked = false;
     });
   });
 }
