@@ -476,3 +476,12 @@ p:hover {
     opacity: 0;
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .videos-wrapper {
+    width: 100vw;
+  }
+  .abouttext p {
+    font-size: 2rem;
+  }
+}
