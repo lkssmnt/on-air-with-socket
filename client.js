@@ -81,12 +81,11 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 const videos = [
-  "Tn4XvHqXyh0",
-  "B3-8fPKATDo",
-  "joQ42CYhtZw",
-  "Wimkqo8gDZ0",
-  "90x3I-sR4Lk",
-  "nPQ4BpTfK1Q",
+"Wimkqo8gDZ0",
+"Tn4XvHqXyh0",
+"B3-8fPKATDo",
+"rS9BLtwDq7I",
+"dhRuw7cxM_w",
 ];
 
 //create buttons and iframe placeholders
@@ -204,7 +203,7 @@ if(btns) {
 }
 
 
-let videoActive = null;
+// let videoActive = null;
 
 let autoplayInterval = setInterval(() => {
   console.log(autoplay);
