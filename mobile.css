@@ -1,0 +1,52 @@
+@media (max-width: 500px) {
+  h2 {
+    font-size: 3rem;
+  }
+
+  .toggle {
+    display: none;
+  }
+
+  #about {
+    padding-bottom: 2.5rem;
+    font-size: 5rem;
+  }
+
+  .top {
+    flex-direction: column;
+  }
+  .top .left {
+    margin: 0 auto;
+  }
+  .top .left .ring-container {
+    height: 3rem;
+    width: 3rem;
+    margin-right: 1rem;
+  }
+  .top .left .ring-container .circle {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+  .top .left .ring-container .ringring {
+    height: 3rem;
+    width: 3rem;
+  }
+  .top .left h2 {
+    padding-top: 0.5rem;
+    font-size: 8rem;
+  }
+
+  .abouttext h2 {
+    margin: 1rem 0;
+    font-size: 5rem;
+  }
+  .abouttext p {
+    padding: 2rem;
+    font-size: 2.6rem;
+  }
+  .abouttext p .and {
+    font-size: 3rem;
+  }
+}
+
+/*# sourceMappingURL=mobile.css.map */
