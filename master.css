@@ -415,13 +415,23 @@ p:hover {
 
 .close {
   position: fixed;
+  z-index: 100;
 }
 
 /* live dot */
 /* live dot */
 
+.left{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .ring-container {
   position: relative;
+  width: 0.95rem;
+  height: 0.95rem;
+  padding-right: 2rem;
 }
 
 .circle {
@@ -431,6 +441,10 @@ p:hover {
   border-radius: 50%;
   position: absolute;
   filter: blur(1px);
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .ringring {
@@ -441,20 +455,24 @@ p:hover {
   position: absolute;
   filter: blur(1px);
 
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
   -webkit-animation: pulsate 3s ease-out;
   -webkit-animation-iteration-count: infinite;
   opacity: 0;
 }
 @-webkit-keyframes pulsate {
   0% {
-    -webkit-transform: scale(0.1, 0.1);
+    -webkit-transform: translate(-50%, -50%) scale(0.1, 0.1);
     opacity: 0;
   }
   50% {
     opacity: 1;
   }
   100% {
-    -webkit-transform: scale(1.5, 1.5);
+    -webkit-transform: translate(-50%, -50%) scale(1.5, 1.5);
     opacity: 0;
   }
 }
