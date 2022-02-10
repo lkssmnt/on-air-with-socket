@@ -91,6 +91,14 @@ const videos = [
 "dhRuw7cxM_w",
 ];
 
+const titles = [
+  'The Walk',
+  'Screencast',
+  'iwilltakecareofmywork',
+  'Knit with Code',
+  'im:possible school ',
+];
+
 //create buttons and iframe placeholders
 let btnCounter = 0;
 videos.forEach(video => {
@@ -188,10 +196,12 @@ if(btns) {
     });
 
 
-    btn.addEventListener("mouseenter", () =>{
+    btn.addEventListener("mouseenter", (e) =>{
       const previewTitle = document.querySelector(".preview-title");
       previewTitle.classList.add("active");
       btn.classList.add("btn-hover");
+      document.getElementsByClassName('preview-title')[0].innerHTML =
+      titles[e.target.getAttribute("data-count")];
     });
 
     btn.addEventListener("mouseleave", () =>{
