@@ -27,7 +27,7 @@ socket.on("updateCursorPos", data => {
 
   if(!document.querySelector(selector)) {
     const cursor = document.createElement("img");
-    cursor.setAttribute("src", "assets/arrow2.png");
+    cursor.setAttribute("src", "assets/arrow.png");
     cursor.setAttribute("class", "pointer");
     cursor.setAttribute("session_id", data.session_id);
 
@@ -81,8 +81,8 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 const videos = [
-  "aTHmdLVcieI",
-  "MNeX4EGtR5Y",
+  "Tn4XvHqXyh0",
+  "B3-8fPKATDo",
   "joQ42CYhtZw",
   "Wimkqo8gDZ0",
   "90x3I-sR4Lk",
@@ -138,6 +138,8 @@ function onPlayerReady(event) {
 // const firstFrame = document.querySelector('#ytPlayer-0');
 // firstFrame.classList.add('active');
 
+let clicked = false;
+
 function switchVideo(videoN) {
   const btn = document.querySelector(`[data-count="${videoN}"]`);
   const frameSelector = btn.getAttribute("data-video");
@@ -157,31 +159,46 @@ function switchVideo(videoN) {
     frame.classList.add("active");
   // }, 100);
   players[videoN].playVideo();
+  btns.forEach(btn => {
+    btn.classList.remove("btn-hover");
+  });
+  btn.classList.add("btn-hover");
 }
 
 
 const btns = document.querySelectorAll(".btn");
+let videoActive = null;
 
 if(btns) {
   btns.forEach(btn => {
     btn.addEventListener("click", (e) => {
       if(autoplay) {
-        clearInterval(autoplayInterval);
+        // clearInterval(autoplayInterval);
+        input.checked = false;
         autoplay = false;
       }
-      switchVideo(e.target.getAttribute("data-count"));
-      input.checked = false;
-      autoplay = false;
+      videoActive = e.target.getAttribute("data-count");
+      switchVideo(videoActive);
+
+      btn.classList.add("btn-hover");
+      clicked = true;
+      // autoplay = false;
     });
+
 
     btn.addEventListener("mouseenter", () =>{
       const previewTitle = document.querySelector(".preview-title");
       previewTitle.classList.add("active");
+      btn.classList.add("btn-hover");
     });
 
     btn.addEventListener("mouseleave", () =>{
       const previewTitle = document.querySelector(".preview-title");
       previewTitle.classList.remove("active");
+      if (!clicked) {
+        btn.classList.remove("btn-hover");
+      }
+      clicked = false;
     });
   });
 }
@@ -190,10 +207,13 @@ if(btns) {
 let videoActive = null;
 
 let autoplayInterval = setInterval(() => {
+  console.log(autoplay);
+  console.log(videoActive);
+  console.log(players.length - 1);
   if(videoActive === null) {
     videoActive = 0;
     switchVideo(videoActive);
-  }else if(videoActive === players.length - 1 && autoplay) {
+  }else if(videoActive == players.length - 1 && autoplay) {
     videoActive = 0;
     switchVideo(videoActive);
   } else if(autoplay){
