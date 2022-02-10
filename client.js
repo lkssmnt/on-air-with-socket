@@ -70,6 +70,9 @@ function myScale(num, in_min, in_max, out_min, out_max) {
 
 //autoplaytoggle setup
 
+let viewportHeight = window.innerHeight * 0.01;
+document.documentElement.style.setProperty('--vh', `${viewportHeight}px`);
+
 var input = document.getElementById('toggleswitch');
 input.checked = true;
 var autoplay = true;
