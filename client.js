@@ -161,17 +161,19 @@ function switchVideo(videoN) {
 
 
 const btns = document.querySelectorAll(".btn");
+let videoActive = null;
 
 if(btns) {
   btns.forEach(btn => {
     btn.addEventListener("click", (e) => {
       if(autoplay) {
-        clearInterval(autoplayInterval);
+        // clearInterval(autoplayInterval);
+        input.checked = false;
         autoplay = false;
       }
-      switchVideo(e.target.getAttribute("data-count"));
-      input.checked = false;
-      autoplay = false;
+      videoActive = e.target.getAttribute("data-count");
+      switchVideo(videoActive);
+      // autoplay = false;
     });
 
     btn.addEventListener("mouseenter", () =>{
@@ -187,14 +189,17 @@ if(btns) {
 }
 
 
-let videoActive = null;
+
 // let autoplay = true;
 
 let autoplayInterval = setInterval(() => {
+  console.log(autoplay);
+  console.log(videoActive);
+  console.log(players.length - 1);
   if(videoActive === null) {
     videoActive = 0;
     switchVideo(videoActive);
-  }else if(videoActive === players.length - 1 && autoplay) {
+  }else if(videoActive == players.length - 1 && autoplay) {
     videoActive = 0;
     switchVideo(videoActive);
   } else if(autoplay){
