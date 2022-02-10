@@ -27,7 +27,7 @@ socket.on("updateCursorPos", data => {
 
   if(!document.querySelector(selector)) {
     const cursor = document.createElement("img");
-    cursor.setAttribute("src", "assets/arrow2.png");
+    cursor.setAttribute("src", "assets/arrow.png");
     cursor.setAttribute("class", "pointer");
     cursor.setAttribute("session_id", data.session_id);
 
@@ -81,8 +81,8 @@ var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
 const videos = [
-  "aTHmdLVcieI",
-  "MNeX4EGtR5Y",
+  "Tn4XvHqXyh0",
+  "B3-8fPKATDo",
   "joQ42CYhtZw",
   "Wimkqo8gDZ0",
   "90x3I-sR4Lk",
