@@ -32,6 +32,10 @@ body {
   cursor: url(assets/arrow.png) 10 10, default;
 }
 
+a, .btn:hover, .toggle{
+  cursor: url(assets/arrow3.png) 10 10, default;
+}
+
 body {
   background: linear-gradient(318.32deg, #c3d1e4 0%, #dde7f3 55%, #d4e0ed 100%);
 }
@@ -44,10 +48,11 @@ h1.preview-title {
   position: fixed;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: Jellee;
+  transform: translate(-46%, -50%);
+  font-family: Snell;
   line-height: 1;
   mix-blend-mode: difference;
+  z-index: 100;
 }
 
 h1.preview-title.active {
@@ -121,6 +126,7 @@ h2 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  transform: translateY(-2rem);
 }
 
 .btns-wrapper {
@@ -128,7 +134,7 @@ h2 {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 2rem;
+  padding: 0 4rem 1rem 4rem;
 }
 
 @keyframes fadeout {
@@ -272,7 +278,7 @@ canvas {
   display: block;
   transition: all 0.3s;
   border-radius: 3.4rem;
-  cursor: pointer;
+  /* cursor: pointer; */
 }
 
 .roundbutton:before {
@@ -292,7 +298,7 @@ canvas {
 }
 
 input:checked + .roundbutton {
-  background-color: white;
+  background-color: #EAEAEA;
 }
 
 input:checked + .roundbutton:before {
@@ -403,6 +409,7 @@ p:hover {
 .close {
   position: fixed;
   z-index: 100;
+  margin: 2rem;
 }
 
 /* live dot */

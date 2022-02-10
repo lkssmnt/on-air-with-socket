@@ -99,6 +99,14 @@ const videos = [
 "dhRuw7cxM_w",
 ];
 
+const titles = [
+  'The Walk',
+  'Screencast',
+  'iwilltakecareofmywork',
+  'Knit with Code',
+  'im:possible school ',
+];
+
 //create buttons and iframe placeholders
 let btnCounter = 0;
 videos.forEach(video => {
@@ -127,7 +135,15 @@ function onYouTubePlayerAPIReady() {
     const player = new YT.Player(`ytPlayer-${playerCounter}`, {
       height: '315',
       width: '560',
-      playerVars: { 'autoplay': 1, 'showinfo': 0, 'modestbranding': 1, 'loop': 1, 'playsinline': 1, 'rel': 0, },
+      playerVars: {
+        'autoplay': 1,
+        'showinfo': 0,
+        'modestbranding': 1,
+        'loop': 1,
+        'playsinline': 1,
+        'rel': 0,
+        'playlist': video,
+      },
       videoId: video,
       events: {
         'onReady': onPlayerReady,
@@ -196,10 +212,12 @@ if(btns) {
     });
 
 
-    btn.addEventListener("mouseenter", () =>{
+    btn.addEventListener("mouseenter", (e) =>{
       const previewTitle = document.querySelector(".preview-title");
       previewTitle.classList.add("active");
       btn.classList.add("btn-hover");
+      document.getElementsByClassName('preview-title')[0].innerHTML =
+      titles[e.target.getAttribute("data-count")];
     });
 
     btn.addEventListener("mouseleave", () =>{
