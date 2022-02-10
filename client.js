@@ -188,7 +188,6 @@ if(btns) {
 
 
 let videoActive = null;
-let autoplay = true;
 
 let autoplayInterval = setInterval(() => {
   if(videoActive === null) {
