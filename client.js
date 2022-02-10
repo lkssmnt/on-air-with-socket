@@ -127,7 +127,15 @@ function onYouTubePlayerAPIReady() {
     const player = new YT.Player(`ytPlayer-${playerCounter}`, {
       height: '315',
       width: '560',
-      playerVars: { 'autoplay': 1, 'showinfo': 0, 'modestbranding': 1, 'loop': 1, 'playsinline': 1, 'rel': 0, },
+      playerVars: {
+        'autoplay': 1,
+        'showinfo': 0,
+        'modestbranding': 1,
+        'loop': 1,
+        'playsinline': 1,
+        'rel': 0,
+        'playlist': video,
+      },
       videoId: video,
       events: {
         'onReady': onPlayerReady,
