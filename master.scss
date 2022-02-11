@@ -49,7 +49,7 @@
 
   .abouttext {
     h2 {
-      margin: 1rem 0;
+      margin: 2rem 0;
       font-size: 5rem;
     }
 
@@ -61,5 +61,23 @@
         font-size: 3rem;
       }
     }
+  }
+
+  .overlay-wrapper {
+    position: absolute;
+    height: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .abouttext img {
+    display: block;
+    transform: translate(0, 0);
+    margin: 0 auto 2rem auto;
+  }
+
+  .close img {
+    width: 6rem;
+    height: 6rem;
   }
 }

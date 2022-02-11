@@ -266,6 +266,13 @@ canvas {
   display: none;
 }
 
+.toggle h3 {
+  font-size: 1.1rem;
+  margin-right: 0.3rem;
+  margin-top: 0.2rem;
+  transform: translateX(-6rem);
+}
+
 .roundbutton {
   position: absolute;
   top: 0;
@@ -340,6 +347,7 @@ input:checked + .roundbutton:before {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  cursor: url(assets/arrow.png) 10 10, default;
 }
 
 #about {
@@ -354,9 +362,14 @@ input:checked + .roundbutton:before {
 .top {
   width: 100vw;
   padding: 0 1rem;
+  margin-top: 0.3rem;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.right {
+  margin-right: 0.5rem;
 }
 
 /* about page */

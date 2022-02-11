@@ -8,7 +8,7 @@ const port = process.env.PORT || 3000;
 const httpServer = http.createServer();
 const io = new Server(httpServer, {
   cors: {
-    origin: "https://lsiemoneit.de",
+    origin: "https://digitale-grafik.com",
     allowedHeaders: ["my-custom-header"],
     credentials: true
   }
