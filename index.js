@@ -8,7 +8,7 @@ const port = process.env.PORT || 3000;
 const httpServer = http.createServer();
 const io = new Server(httpServer, {
   cors: {
-    origin: "https://digitale-grafik.com",
+    origin: "https://onair.digitale-grafik.com",
     allowedHeaders: ["my-custom-header"],
     credentials: true
   }

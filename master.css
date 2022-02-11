@@ -206,7 +206,7 @@ svg > path {
   /* pointer-events: none; */
   padding-top: calc(var(--vh, 1vh) * 1.5);
   pointer-events: none;
-  width: calc(var(--vh, 1vh) * 140);
+  width: calc(var(--vh, 1vh) * 130);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
